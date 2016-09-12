@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+###############
+Peer Graded Assignment: Module 1 Coding Assignment
+
+Developer note:
+This implementation uses the slightly more HTML5-compliant
+names for AngularJS "ng-XXX" directives ("data-ng-XXX").
+While this is not mandatory, it does feel more appropriate.
+###############
+-->
+<html lang="en" data-ng-app="LunchCheck">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <title>Lunch Checker</title>
+
+   <link rel="stylesheet" href="styles/bootstrap.min.css">
+   <style>
+      .message { font-size: 1.3em; font-weight: bold; }
+   </style>
+
+   <script src="scripts/angular.min.js"></script>
+   <script src="scripts/app.js"></script>
+</head>
+<body data-ng-controller="LunchCheckController">
+   <div class="container">
+      <h1>Lunch Checker</h1>
+      <p class="text-info">Note: this checker counts only non-blank items.</p>
+      <div class="form-group {{validationStatus}}">
+         <input id="lunch-menu"
+                type="text"
+                placeholder="list comma separated dishes you usually have for lunch"
+                class="form-control"
+                data-ng-model="lunchMenu">
+      </div>
+      <div class="form-group">
+         <button class="btn btn-default" data-ng-click="performLunchCheck()">Check If Too Much</button>
+      </div>
+      <div class="form-group message {{messageExtraStyle}}">
+         {{feedbackMessage}}
+      </div>
+    </div>
+</body>
+</html>
