@@ -27,43 +27,42 @@
       }
     </style>
   </head>
-  <script src="scripts/angular.min.js"></script>
-  <script src="scripts/app.js"></script>
-<body>
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+  <body>
+    <div class="container">
+      <h1>Shopping List Check Off</h1>
 
-  <div class="row">
+      <div class="row">
+        <!-- To Buy List -->
+        <div class="col-md-6" data-ng-controller="ToBuyShoppingController as toBuy">
+          <h2>To Buy:</h2>
+          <ul>
+            <li data-ng-repeat="item in toBuy.items">
+              Buy {{ item.quantity }} {{ item.name }}
+              <button class="btn btn-default" data-ng-click="toBuy.buyItem($index)">
+                <span class="glyphicon glyphicon-ok"></span> Bought
+              </button>
+            </li>
+          </ul>
+          <div class="emptyMessage"
+               data-ng-if="toBuy.items.length === 0">
+            Everything is bought!
+          </div>
+        </div>
 
-    <!-- To Buy List -->
-    <div class="col-md-6" data-ng-controller="ToBuyShoppingController as toBuy">
-      <h2>To Buy:</h2>
-      <ul>
-        <li data-ng-repeat="item in toBuy.items">
-          Buy {{ item.quantity }} {{ item.name }}
-          <button class="btn btn-default" data-ng-click="toBuy.buyItem($index)">
-            <span class="glyphicon glyphicon-ok"></span> Bought
-          </button>
-        </li>
-      </ul>
-      <div class="emptyMessage"
-           data-ng-if="toBuy.items.length === 0">
-           Everything is bought!
+        <!-- Already Bought List -->
+        <div class="col-md-6" data-ng-controller="AlreadyBoughtShoppingController as alreadyBought">
+          <h2>Already Bought:</h2>
+          <ul>
+            <li data-ng-repeat="item in alreadyBought.items">Bought {{ item.quantity }} {{ item.name }}</li>
+          </ul>
+          <div class="emptyMessage" 
+               data-ng-if="alreadyBought.items.length === 0">
+            Nothing bought yet.
+          </div>
+        </div>
       </div>
     </div>
-
-    <!-- Already Bought List -->
-    <div class="col-md-6" data-ng-controller="AlreadyBoughtShoppingController as alreadyBought">
-      <h2>Already Bought:</h2>
-      <ul>
-        <li data-ng-repeat="item in alreadyBought.items">Bought {{ item.quantity }} {{ item.name }}</li>
-      </ul>
-      <div class="emptyMessage" 
-           data-ng-if="alreadyBought.items.length === 0">
-           Nothing bought yet.
-      </div>
-    </div>
-  </div>
-</div>
-</body>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+  </body>
 </html>
