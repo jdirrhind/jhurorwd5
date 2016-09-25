@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-ng-app="NarrowItDownApp">
+  <head>
+    <title>Narrow Down Your Menu Choice</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <div class="container" data-ng-controller="NarrowItDownController as nid">
+      <h1>Narrow Down Your Chinese Menu Choice</h1>
+      <div>
+      <h4>Application Description</h4>
+        <p>This is a simplified search of the menu item descriptions using the restaurant server REST API used in Lecture 25, Part 2.</p>
+        <p>The idea here is for the user to search the descriptions of menu items. Then, given the list of matches, give the user the ability to remove any items from the list that they do not want for sure, thus narrowing it down to what they do want.</p>
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <input type="text" 
+                 placeholder="search term"
+                 class="form-control"
+                 data-ng-model="nid.searchTerm">
+          <div class="narrow-button">
+            <button class="btn btn-primary" data-ng-click="nid.doNarrow()">
+              Narrow It Down For Me!
+            </button>
+          </div>
+        </div>
+
+        <!-- Bonus loader (see Bonus section of the assignment) -->
+        <items-loader-indicator
+          loading-in-progress="nid.loadingInProgress">
+        </items-loader-indicator>
+      </div>
+
+      <!-- found-items should be implemented as a component -->
+      <found-items
+        found-items="nid.found" 
+        on-remove="nid.removeIt(itemIndex)">
+      </found-items>
+    </div>
+
+    <!-- Libraries -->
+    <script src="assets/lib/angular.min.js"></script>
+
+    <!-- Modules -->
+    <script src="app/shared/loader/loader.module.js"></script>
+    <script src="app/components/narrow.module.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/components/narrow.controller.js"></script>
+
+    <!-- Services and Factories -->
+    <script src="app/components/menusearch.service.js"></script>
+
+    <!-- Components -->
+    <script src="app/components/founditems.component.js"></script>
+    <script src="app/shared/loader/loader.component.js"></script>
+  </body>
+</html>
