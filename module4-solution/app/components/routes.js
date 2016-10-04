@@ -16,13 +16,13 @@
                 .state('home', {
                     // The home page state.
                     url: '/',
-                    templateUrl: '/app/components/home.template.html'
+                    templateUrl: 'app/components/home.template.html'
                 })
 
                 .state('categories', {
                     // Lists all categories.
                     url: '/categories',
-                    templateUrl: '/app/components/categories.template.html',
+                    templateUrl: 'app/components/categories.template.html',
                     controller: 'CategoryController as cc',
                     resolve: {
                         fetchedCategories: ['MenuDataService', function(MenuDataService) {
@@ -38,7 +38,7 @@
                               hiddenParam: { value: "" }, // Note to self: 'URL-invisible' parameters can be declared this way and accessed via $stateParams. They can also be populated in the resolve section, below.
                               '#':         { value: "" }  // Note to self: We can use this to append '#' followed by an ID to the generated URL. See template for details.
                             },
-                    templateUrl: '/app/components/items.template.html',
+                    templateUrl: 'app/components/items.template.html',
                     controller: 'ItemsController as ic',
                     resolve: {
                         fetchedItems: ['$stateParams', 'MenuDataService',
