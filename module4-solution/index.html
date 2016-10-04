@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-ng-app="MenuApp">
+  <head>
+    <title>Restaurant Menu Assignment</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Libraries -->
+    <script src="assets/lib/angular.min.js"></script>
+    <script src="assets/lib/angular-ui-router.min.js"></script>
+  </head>
+  <body data-ng-cloak>
+    <div class="container" id="page-top" data-ng-controller="MenuAppController as mac">
+      <div class="jumbotron">
+        <h1>{{ mac.restaurant.name }}</h1>
+        <small>{{ mac.restaurant.slogan }}</small>
+      </div>
+
+      <!-- Pluggable view -->
+      <div>
+        <ui-view></ui-view>
+      </div>
+
+      <!-- Page Footer -->
+      <div class="alert alert-info" role="alert">
+        Contact us: 
+        <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+        <span class="sr-only">Info:</span>
+        {{ mac.restaurant.telephone }}
+      </div>
+    </div>
+
+    <!-- Modules -->
+    <script src="app/components/menuapp.module.js"></script>
+    <script src="app/components/data.module.js"></script>
+
+    <!-- Components -->
+    <script src="app/components/categories.component.js"></script>
+    <script src="app/components/items.component.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/components/menuapp.controller.js"></script>
+    <script src="app/components/data.controller.js"></script>
+    <script src="app/components/categories.controller.js"></script>
+    <script src="app/components/items.controller.js"></script>
+
+    <!-- Routes -->
+    <script src="app/components/routes.js"></script>
+
+    <!-- Services and Factories -->
+    <script src="app/components/menudata.service.js"></script>
+  </body>
+</html>

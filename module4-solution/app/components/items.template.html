@@ -1,0 +1,39 @@
+<!-- items.template.html -->
+<section>
+  <ol class="breadcrumb">
+    <li><a ui-sref="home">Home</a></li>
+    <li><a ui-sref="categories">Categories</a></li>
+    <li class="active">Items</li>
+  </ol>
+
+  <h2>Items for category: <em>{{ ic.fetchedItems.category.name }}</em></h2>
+
+  <div class="alert alert-danger" role="alert" data-ng-if="!ic.itemsAvailable">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    No items were found for this category.
+  </div>
+
+  <table class="table table-striped table-bordered" data-ng-if="ic.itemsAvailable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price(large)</th>
+      </tr>
+      <tbody>
+        <tr data-ng-repeat="item in ic.fetchedItems.menu_items">
+          <td>
+            {{ item.short_name }} : {{ item.name }}
+          </td>
+          <td>
+            {{ item.description }}
+          </td>
+          <td>
+            {{ item.price_large | currency : $ : 2 }}
+          </td>
+        </tr>
+      </tbody>
+    </thead>
+  </table>
+</section>
