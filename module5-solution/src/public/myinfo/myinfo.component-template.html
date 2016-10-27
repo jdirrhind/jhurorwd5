@@ -1,0 +1,61 @@
+<!-- myinfo.component-template.html -->
+<section>
+  <div data-ng-if="! $ctrl.boundIsRegistered">
+    <p>
+      Not Signed Up Yet?
+      <br class="visible-xs-block"><!-- line break improves appearance on xs devices -->
+      <a ui-sref="public.signup">Sign up Now!</a>
+    </p>
+  </div>
+
+  <div data-ng-if="$ctrl.boundIsRegistered">
+    <p>
+      Here is your currently registered information:
+    </p>
+
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">First name</th>
+          <td>{{ $ctrl.boundRegInfo.firstName }}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Last name</th>
+          <td>{{ $ctrl.boundRegInfo.lastName }}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{ $ctrl.boundRegInfo.email }}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Telephone</th>
+          <td>{{ $ctrl.boundRegInfo.telephone }}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Favourite Dish</th>
+          <td>
+            <div data-ng-if="$ctrl.boundRegInfo.favouriteDish">
+              <!-- If there's a nominated favourite dish, show it. -->
+              <div class="col-xs-12 col-sm-4">
+                <img class="img-responsive img-thumbnail"
+                     data-ng-src="{{ $ctrl.boundRetrievedDishImageURL }}" alt="image for {{ $ctrl.boundRegInfo.favouriteDish }}">
+              </div>
+              <div>
+                <h4 class="media-heading">{{ $ctrl.boundRegInfo.favouriteDish }} : {{ $ctrl.boundRetrievedDish.name }}</h4>
+                {{ $ctrl.boundRetrievedDish.description }}
+              </div>
+            </div>
+            <div data-ng-if="! $ctrl.boundRegInfo.favouriteDish">
+              <!-- If there isn't a nominated favourite dish, invite them to pick one. -->
+              No dish chosen yet. Go on.... Re-register and pick a dish!
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

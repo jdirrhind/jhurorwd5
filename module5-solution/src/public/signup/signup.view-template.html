@@ -1,0 +1,135 @@
+<div class="row">
+  <div class="col-xs-10 col-xs-offset-1">
+    <h2>Sign up for the Restaurant Newsletter</h2>
+    <form name="signupForm" novalidate>
+      <div class="form-group">
+        <div class="col-sm-3">
+          <label for="frmFirstName">First name:</label>
+        </div>
+        <div class="col-sm-9">
+          <input id="frmFirstName"
+                 name="frmFirstName"
+                 type="text"
+                 class="form-control"
+                 required
+                 minlength="2"
+                 data-ng-model="suc.form.firstName">
+          <span data-ng-if="suc.failsValidation(signupForm.frmFirstName, 'required')"
+                class="bg-warning">First name is required</span>
+          <span data-ng-if="suc.failsValidation(signupForm.frmFirstName, 'minlength')"
+                class="bg-warning">First name must be at least two characters</span>
+          <br data-ng-if="suc.failsValidation(signupForm.frmFirstName)">
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-3">
+          <label for="frmLastName">Last name:</label>
+        </div>
+        <div class="col-sm-9">
+          <input id="frmLastName"
+                 name="frmLastName"
+                 type="text"
+                 class="form-control"
+                 required
+                 minlength="2"
+                 data-ng-model="suc.form.lastName">
+          <span data-ng-if="suc.failsValidation(signupForm.frmLastName, 'required')"
+                class="bg-warning">Last name is required</span>
+          <span data-ng-if="suc.failsValidation(signupForm.frmLastName, 'minlength')"
+                class="bg-warning">Last name must be at least two characters</span>
+          <br data-ng-if="suc.failsValidation(signupForm.frmLastName)">
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-3">
+          <label for="frmEmail">Email:</label>
+        </div>
+        <div class="col-sm-9">
+          <input id="frmEmail"
+                 name="frmEmail"
+                 type="email"
+                 placeholder="someone@example.com"
+                 class="form-control"
+                 required
+                 data-ng-model="suc.form.email">
+          <span data-ng-if="suc.failsValidation(signupForm.frmEmail, 'email')"
+                class="bg-warning">Please enter a valid e-mail address
+          </span>
+          <span data-ng-if="suc.failsValidation(signupForm.frmEmail, 'required')"
+                class="bg-warning">An e-mail address is required for receiving the newsletter
+          </span>
+          <br data-ng-if="suc.failsValidation(signupForm.frmEmail)">
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-3">
+          <label for="frmTelephone">Telephone:</label>
+        </div>
+        <div class="col-sm-9">
+          <input id="frmTelephone"
+                 name="frmTelephone"
+                 type="tel"
+                 placeholder="(123) 456-7890"
+                 class="form-control"
+                 pattern="\(\d+\)\s\d+-\d+"
+                 title="Enter the prefix in parentheses followed by a single space followed by the rest of the number with a single embedded hyphen. This format is imposed by our NuisanceDialler software."
+                 data-ng-model="suc.form.telephone">
+          <span data-ng-if="suc.failsValidation(signupForm.frmTelephone, 'pattern')"
+                class="bg-warning">
+            Please adhere to the format shown when hovering over the field.
+          </span>
+          <br data-ng-if="suc.failsValidation(signupForm.frmTelephone)">
+          <br>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-3">
+          <label for="frmFavDish">Favourite dish:</label>
+        </div>
+        <div class="col-sm-9">
+          <input id="frmFavDish"
+                 name="frmFavDish"
+                 type="text"
+                 placeholder="Enter a dish number (e.g., D3 for Sesame Chicken)"
+                 class="form-control"
+                 menuitem
+                 data-ng-model="suc.form.favouriteDish"
+                 data-ng-model-options="{ debounce: 1000 }">
+          <span data-ng-show="signupForm.frmFavDish.$pending.menuitem">
+            Checking if this menu number is valid...
+          </span>
+          <span
+             data-ng-if="suc.failsValidation(signupForm.frmFavDish, 'menuitem')"
+             class="bg-warning">
+            Invalid menu number<span data-ng-if="suc.form.erroneousDish">: {{ suc.form.erroneousDish }}</span>
+          </span>
+          <br>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <button type="submit"
+                class="btn btn-default"
+                data-ng-disabled="signupForm.$invalid"
+                data-ng-click="suc.submitForm()">
+          Sign Up
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="col-xs-12">&nbsp;</div>
+
+  <div class="col-xs-10 col-xs-offset-1 bg-success"
+       data-ng-if="suc.form.showDataSavedMessage">
+    Your information has been saved.
+  </div>
+</div>
